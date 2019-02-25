@@ -1,37 +1,28 @@
 // Code your solution here:
-function driversWithRevenueOver(array, rev) {
-  const overRevenueDrivers = array.filter(function(driver){
-    if (driver.revenue > rev){
-      return driver.name
-    }
+function driversWithRevenueOver(drivers, revenue){
+  return drivers.filter(d => {
+    return d.revenue > revenue
   })
-
-  return overRevenueDrivers;
 }
 
-function driverNamesWithRevenueOver(array, rev) {
-  const overRevenueObjects = array.filter(function (driver){
-    return driver.revenue > rev
-  });
-  const overRevenueNames = overRevenueObjects.map(function(driver) {
-    return driver.name
+function driverNamesWithRevenueOver(drivers, revenue){
+  let filtArr = driversWithRevenueOver(drivers, revenue)
+
+  return filtArr.map(d => {
+    return d.name
   })
-  return overRevenueNames
 }
 
-function exactMatch(array, attribute) {
-  const exactMatch = array.filter(function (driver){
-    return driver[`${Object.keys(attribute)}`] === Object.values(attribute)[0]
-  });
-  return exactMatch
+function exactMatch(drivers, val){
+  let check = Object.keys(val)[0]
+  return drivers.filter(d => {
+    return d[check] === val[check]
+  })
 }
 
-function exactMatchToList(array, attribute) {
-  const exactMatchObject = array.filter(function (driver){
-    return driver[`${Object.keys(attribute)}`] === Object.values(attribute)[0]
-  });
-  const exactMatchNames = exactMatchObject.map(function(driver) {
-    return driver.name
-  });
-  return exactMatchNames
+function exactMatchToList(drivers, val){
+  let filtArr = exactMatch(drivers, val)
+  return filtArr.map(d => {
+    return d.name
+  })
 }
